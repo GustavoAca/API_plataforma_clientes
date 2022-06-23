@@ -31,6 +31,10 @@ public class VeiculoModel {
 	@JsonIgnoreProperties("veiculo")
 	private TiposVeiculosModel tiposVeiculos;
 	
+	@ManyToOne
+	@JsonIgnoreProperties("veiculo")
+	private ClienteModel cliente;
+	
 	// set e get
 
 	public Long getId_veiculo() {
@@ -64,5 +68,14 @@ public class VeiculoModel {
 	public void setTiposVeiculos(TiposVeiculosModel tiposVeiculos) {
 		this.tiposVeiculos = tiposVeiculos;
 	}
+
+	public ClienteModel getCorretor() {
+		return cliente;
+	}
+
+	public void setCorretor(ClienteModel cliente) {
+		this.cliente = cliente;
+	}
+	
 		
 }
