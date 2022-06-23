@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -38,6 +39,10 @@ public class ClienteModel {
 	@JsonIgnoreProperties("cliente")
 	private List<VeiculoModel> veiculo;
 	
+	@ManyToOne
+	@JsonIgnoreProperties("cliente")
+	private UsuarioModel usuario;
+	
 	
 	
 	//GET E SET
@@ -68,6 +73,22 @@ public class ClienteModel {
 
 	public String getContato() {
 		return contato;
+	}
+
+	public List<VeiculoModel> getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(List<VeiculoModel> veiculo) {
+		this.veiculo = veiculo;
+	}
+
+	public UsuarioModel getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioModel usuario) {
+		this.usuario = usuario;
 	}
 
 	public void setContato(String contato) {
