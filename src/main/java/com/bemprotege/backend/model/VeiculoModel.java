@@ -25,6 +25,12 @@ public class VeiculoModel {
 
 	private String placa;
 
+	private boolean uber;
+
+	private String vencimentoBoleto;
+
+	private float mensalidade;
+
 	// relacionamentos
 	
 	@ManyToOne
@@ -76,6 +82,35 @@ public class VeiculoModel {
 	public void setCorretor(ClienteModel cliente) {
 		this.cliente = cliente;
 	}
-	
-		
+	public ClienteModel getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(ClienteModel cliente) {
+		this.cliente = cliente;
+	}
+
+	public boolean isUber() {
+		return uber;
+	}
+
+	public void setUber(boolean uber) {
+		this.uber = uber;
+	}
+
+	public String getVencimentoBoleto() {
+		return vencimentoBoleto;
+	}
+
+	public void setVencimentoBoleto(String vencimentoBoleto) {
+		this.vencimentoBoleto = vencimentoBoleto;
+	}
+
+	public float getMensalidade() {
+		return mensalidade;
+	}
+
+	public void setMensalidade(float mensalidade) {
+		this.mensalidade = mensalidade;
+	}
 }
