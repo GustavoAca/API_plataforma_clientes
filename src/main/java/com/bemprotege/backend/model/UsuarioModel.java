@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.br.CPF;
 
 
 @Entity
@@ -97,10 +98,5 @@ public class UsuarioModel {
 	public void setCliente(List<ClienteModel> cliente) {
 		this.cliente = cliente;
 	}
-	
-	
-	
-
-	
 
 }

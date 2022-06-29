@@ -25,13 +25,8 @@ public class ClienteModel {
 	
 	private String nome;
 	
-	private float mensalidade;
-	
 	private String contato;
-	
-	private boolean uber;
-	
-	private String vencimentoBoleto;
+
 	
 	//RELACIONAMENTO DE TABELAS
 	
@@ -63,14 +58,6 @@ public class ClienteModel {
 		this.nome = nome;
 	}
 
-	public float getMensalidade() {
-		return mensalidade;
-	}
-
-	public void setMensalidade(float mensalidade) {
-		this.mensalidade = mensalidade;
-	}
-
 	public String getContato() {
 		return contato;
 	}
@@ -95,22 +82,4 @@ public class ClienteModel {
 		this.contato = contato;
 	}
 
-	public boolean isUber() {
-		return uber;
-	}
-
-	public void setUber(boolean uber) {
-		this.uber = uber;
-	}
-
-	public String getVencimentoBoleto() {
-		return vencimentoBoleto;
-	}
-
-	public void setVencimentoBoleto(String vencimentoBoleto) {
-		this.vencimentoBoleto = vencimentoBoleto;
-	}
-	
-	
-	
 }
