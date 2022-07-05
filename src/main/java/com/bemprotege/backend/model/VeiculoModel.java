@@ -31,6 +31,8 @@ public class VeiculoModel {
 
 	private float mensalidade;
 
+	private String linkContato;
+
 	// relacionamentos
 	
 	@ManyToOne
@@ -112,5 +114,13 @@ public class VeiculoModel {
 
 	public void setMensalidade(float mensalidade) {
 		this.mensalidade = mensalidade;
+	}
+
+	public String getLinkContato() {
+		return linkContato;
+	}
+
+	public void setLinkContato(String linkContato) {
+		this.linkContato = linkContato;
 	}
 }

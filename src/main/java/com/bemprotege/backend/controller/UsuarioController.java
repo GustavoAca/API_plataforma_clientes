@@ -28,41 +28,47 @@ import com.bemprotege.backend.service.UsuarioService;
 @RequestMapping("/usuarios")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
-		
-	@Autowired
-	private UsuarioService usuarioService;
-	
-	@Autowired
-	private UsuarioRepository repository;
-	
-	@GetMapping
-	public ResponseEntity<List<UsuarioModel>> getAll(){
-		return ResponseEntity.ok(repository.findAll());
-	}
-	
-	@PostMapping("/logar")
-	public ResponseEntity<UsuarioLogin> Autentication(@RequestBody Optional<UsuarioLogin> user){
-		return usuarioService.autenticaUsuario(user).map(resp -> ResponseEntity.ok(resp))
-				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
-	}
-	
-	@PostMapping("/cadastrar")
-	public ResponseEntity<UsuarioModel> postUsuario(@Valid @RequestBody UsuarioModel usuario) {
 
-		return usuarioService.cadastraUsuario(usuario)
-				.map(resp -> ResponseEntity.status(HttpStatus.CREATED).body(resp))
-				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
-	}
+    @Autowired
+    private UsuarioService usuarioService;
 
-	@PutMapping("/atualizar")
-	public ResponseEntity<UsuarioModel> putUsuario(@Valid @RequestBody UsuarioModel usuario) {
-		return usuarioService.atualizarUsuario(usuario)
-				.map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
-				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-	}
+    @Autowired
+    private UsuarioRepository repository;
 
-	@DeleteMapping("/{id_usuario}")
-	public void delete(@PathVariable Long id_usuario) {
-		repository.deleteById(id_usuario);
-	}
+    @GetMapping
+    public ResponseEntity<List<UsuarioModel>> getAll() {
+        return ResponseEntity.ok(repository.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioModel> getById(@PathVariable Long id) {
+        return repository.findById(id)
+                .map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/logar")
+    public ResponseEntity<UsuarioLogin> Autentication(@RequestBody Optional<UsuarioLogin> user) {
+        return usuarioService.autenticaUsuario(user).map(resp -> ResponseEntity.ok(resp))
+                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+    }
+
+    @PostMapping("/cadastrar")
+    public ResponseEntity<UsuarioModel> postUsuario(@Valid @RequestBody UsuarioModel usuario) {
+
+        return usuarioService.cadastraUsuario(usuario)
+                .map(resp -> ResponseEntity.status(HttpStatus.CREATED).body(resp))
+                .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+    }
+
+    @PutMapping("/atualizar")
+    public ResponseEntity<UsuarioModel> putUsuario(@Valid @RequestBody UsuarioModel usuario) {
+        return usuarioService.atualizarUsuario(usuario)
+                .map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+    @DeleteMapping("/{id_usuario}")
+    public void delete(@PathVariable Long id_usuario) {
+        repository.deleteById(id_usuario);
+    }
 }
