@@ -51,13 +51,6 @@ public class UsuarioModel {
 	
 	//GET E SET
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getNome() {
 		return nome;
@@ -67,12 +60,20 @@ public class UsuarioModel {
 		this.nome = nome;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
 	public String getUsuario() {
 		return usuario;
 	}
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getSenha() {
@@ -98,5 +99,4 @@ public class UsuarioModel {
 	public void setCliente(List<ClienteModel> cliente) {
 		this.cliente = cliente;
 	}
-
 }

@@ -13,114 +13,107 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "veiculos")
 public class VeiculoModel {
 
-	// construtores
+    // construtores
 
 
-	// atributos
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_veiculo;
+    // atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id_veiculo;
 
-	private String nome;
+    private String nome;
 
-	private String placa;
+    private String placa;
 
-	private boolean uber;
+    private boolean uber;
 
-	private String vencimentoBoleto;
+    private String vencimentoBoleto;
 
-	private float mensalidade;
+    private float mensalidade;
 
-	private String linkContato;
+    private String linkContrato;
 
-	// relacionamentos
-	
-	@ManyToOne
-	@JsonIgnoreProperties("veiculo")
-	private TiposVeiculosModel tiposVeiculos;
-	
-	@ManyToOne
-	@JsonIgnoreProperties("veiculo")
-	private ClienteModel cliente;
-	
-	// set e get
+    // relacionamentos
 
-	public Long getId_veiculo() {
-		return id_veiculo;
-	}
+    @ManyToOne
+    @JsonIgnoreProperties("veiculo")
+    private TiposVeiculosModel tiposVeiculos;
 
-	public void setId_veiculo(Long id_veiculo) {
-		this.id_veiculo = id_veiculo;
-	}
+    @ManyToOne
+    @JsonIgnoreProperties("veiculo")
+    private ClienteModel cliente;
 
-	public String getNome() {
-		return nome;
-	}
+    // set e get
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public Long getId_veiculo() {
+        return id_veiculo;
+    }
 
-	public String getPlaca() {
-		return placa;
-	}
+    public void setId_veiculo(Long id_veiculo) {
+        this.id_veiculo = id_veiculo;
+    }
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public TiposVeiculosModel getTiposVeiculos() {
-		return tiposVeiculos;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setTiposVeiculos(TiposVeiculosModel tiposVeiculos) {
-		this.tiposVeiculos = tiposVeiculos;
-	}
+    public String getPlaca() {
+        return placa;
+    }
 
-	public ClienteModel getCorretor() {
-		return cliente;
-	}
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
 
-	public void setCorretor(ClienteModel cliente) {
-		this.cliente = cliente;
-	}
-	public ClienteModel getCliente() {
-		return cliente;
-	}
+    public TiposVeiculosModel getTiposVeiculos() {
+        return tiposVeiculos;
+    }
 
-	public void setCliente(ClienteModel cliente) {
-		this.cliente = cliente;
-	}
+    public void setTiposVeiculos(TiposVeiculosModel tiposVeiculos) {
+        this.tiposVeiculos = tiposVeiculos;
+    }
 
-	public boolean isUber() {
-		return uber;
-	}
+    public ClienteModel getCliente() {
+        return cliente;
+    }
 
-	public void setUber(boolean uber) {
-		this.uber = uber;
-	}
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
+    }
 
-	public String getVencimentoBoleto() {
-		return vencimentoBoleto;
-	}
+    public boolean isUber() {
+        return uber;
+    }
 
-	public void setVencimentoBoleto(String vencimentoBoleto) {
-		this.vencimentoBoleto = vencimentoBoleto;
-	}
+    public void setUber(boolean uber) {
+        this.uber = uber;
+    }
 
-	public float getMensalidade() {
-		return mensalidade;
-	}
+    public String getVencimentoBoleto() {
+        return vencimentoBoleto;
+    }
 
-	public void setMensalidade(float mensalidade) {
-		this.mensalidade = mensalidade;
-	}
+    public void setVencimentoBoleto(String vencimentoBoleto) {
+        this.vencimentoBoleto = vencimentoBoleto;
+    }
 
-	public String getLinkContato() {
-		return linkContato;
-	}
+    public float getMensalidade() {
+        return mensalidade;
+    }
 
-	public void setLinkContato(String linkContato) {
-		this.linkContato = linkContato;
-	}
+    public void setMensalidade(float mensalidade) {
+        this.mensalidade = mensalidade;
+    }
+
+    public String getLinkContrato() {
+        return linkContrato;
+    }
+
+    public void setLinkContrato(String linkContrato) {
+        this.linkContrato = linkContrato;
+    }
 }
