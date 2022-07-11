@@ -29,8 +29,8 @@ public class ClienteModel {
 
 	
 	//RELACIONAMENTO DE TABELAS
-	
-	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
+
+	@ManyToOne
 	@JsonIgnoreProperties("cliente")
 	private List<VeiculoModel> veiculo;
 	
