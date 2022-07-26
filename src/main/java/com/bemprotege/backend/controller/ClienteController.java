@@ -2,28 +2,26 @@ package com.bemprotege.backend.controller;
 
 import java.util.List;
 
+import com.bemprotege.backend.service.CatalogoClienteService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.bemprotege.backend.model.ClienteModel;
 import com.bemprotege.backend.repository.ClienteRepository;
 
+import javax.validation.Valid;
+
+@AllArgsConstructor
 @RestController
 @RequestMapping("/clientes")
 @CrossOrigin("*")
 public class ClienteController {
-		@Autowired
+
 		private ClienteRepository repository;
+		private CatalogoClienteService catalogoClienteService;
 		
 		@GetMapping
 		public ResponseEntity<List<ClienteModel>> getAll(){
@@ -38,25 +36,39 @@ public class ClienteController {
 		@GetMapping("/{id_cliente}")
 		public ResponseEntity<ClienteModel> buscaPorID(@PathVariable Long id_cliente){
 			return repository.findById(id_cliente)
-					.map(resp -> ResponseEntity.ok(resp))
+					.map(ResponseEntity::ok)
 					.orElse(ResponseEntity.notFound().build());
 		}
 		
 		@PostMapping
-		public ResponseEntity<ClienteModel> post(@RequestBody ClienteModel cliente){
-			return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(cliente));
+		@ResponseStatus(HttpStatus.CREATED)
+		public ClienteModel adicionar( @Valid @RequestBody ClienteModel cliente){
+			return catalogoClienteService.salvar(cliente);
+
 		}
-		
-		@PutMapping
-		public ResponseEntity<ClienteModel> put (@RequestBody ClienteModel cliente){
-			return repository.findById(cliente.getId_cliente())
-					.map(resp -> ResponseEntity.ok().body(repository.save(cliente)))
-					.orElse(ResponseEntity.notFound().build());
+
+		@PutMapping("/{clienteId}")
+		public ResponseEntity<ClienteModel> atualizar(@Valid @PathVariable Long clienteId,
+		@RequestBody ClienteModel cliente){
+			if(!repository.existsById(clienteId)){
+				return ResponseEntity.notFound().build();
+			}
+
+			cliente.setId_cliente(clienteId);
+			cliente = catalogoClienteService.salvar(cliente);
+
+			return  ResponseEntity.ok(cliente);
+
 		}
 		
 		@DeleteMapping("/{id_cliente}")
-		public void delete(@PathVariable Long id_cliente) {
-				repository.deleteById(id_cliente);
+		public ResponseEntity<Void> deleter(@PathVariable Long id_cliente){
+			if(!repository.existsById(id_cliente)){
+				return ResponseEntity.notFound().build();
+			}
+			catalogoClienteService.excluir(id_cliente);
+
+			return ResponseEntity.noContent().build();
 		}
 		
 		

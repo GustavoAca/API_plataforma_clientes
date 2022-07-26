@@ -14,11 +14,15 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 
 @Entity
 @Table(name = "usuarios")
+@Getter
+@Setter
 public class UsuarioModel {
 	
 	//ATRIBUTOS
@@ -47,56 +51,6 @@ public class UsuarioModel {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<ClienteModel> cliente;
-	
-	
-	//GET E SET
 
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
-	public List<ClienteModel> getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(List<ClienteModel> cliente) {
-		this.cliente = cliente;
-	}
 }

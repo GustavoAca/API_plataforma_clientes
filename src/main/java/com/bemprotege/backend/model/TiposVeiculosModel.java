@@ -11,7 +11,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "tipos_veiculos")
 public class TiposVeiculosModel {
@@ -24,35 +28,9 @@ public class TiposVeiculosModel {
 
 	// RELACIONAMENTO DE TABELAS
 
-	@OneToMany(mappedBy="tiposVeiculos",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tiposVeiculos", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("tiposVeiculos")
 	private List<VeiculoModel> veiculo;
-	
-	
-	// set e get
 
-	public Long getId_tipoVeiculo() {
-		return id_tipoVeiculo;
-	}
-
-	public void setId_tipoVeiculo(Long id_tipoVeiculo) {
-		this.id_tipoVeiculo = id_tipoVeiculo;
-	}
-
-	public String getTipoVeiculo() {
-		return tipoVeiculo;
-	}
-
-	public void setTipoVeiculo(String tipoVeiculo) {
-		this.tipoVeiculo = tipoVeiculo;
-	}
-
-	public List<VeiculoModel> getVeiculo() {
-		return veiculo;
-	}
-
-	public void setVeiculo(List<VeiculoModel> veiculo) {
-		this.veiculo = veiculo;
-	}
 
 }

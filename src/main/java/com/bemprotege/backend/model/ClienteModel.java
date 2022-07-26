@@ -12,8 +12,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name="corretores")
 public class ClienteModel {
 	
@@ -30,56 +34,12 @@ public class ClienteModel {
 	
 	//RELACIONAMENTO DE TABELAS
 
-	@ManyToOne
+	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("cliente")
 	private List<VeiculoModel> veiculo;
-	
+
+
 	@ManyToOne
 	@JsonIgnoreProperties("cliente")
 	private UsuarioModel usuario;
-	
-	
-	
-	//GET E SET
-
-	public Long getId_cliente() {
-		return id_cliente;
-	}
-
-	public void setId_cliente(Long id_cliente) {
-		this.id_cliente = id_cliente;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getContato() {
-		return contato;
-	}
-
-	public List<VeiculoModel> getVeiculo() {
-		return veiculo;
-	}
-
-	public void setVeiculo(List<VeiculoModel> veiculo) {
-		this.veiculo = veiculo;
-	}
-
-	public UsuarioModel getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(UsuarioModel usuario) {
-		this.usuario = usuario;
-	}
-
-	public void setContato(String contato) {
-		this.contato = contato;
-	}
-
 }

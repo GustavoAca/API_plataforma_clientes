@@ -3,6 +3,7 @@ package com.bemprotege.backend.service;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
+import lombok.AllArgsConstructor;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,12 +13,10 @@ import org.springframework.stereotype.Service;
 import com.bemprotege.backend.model.UsuarioLogin;
 import com.bemprotege.backend.model.UsuarioModel;
 import com.bemprotege.backend.repository.UsuarioRepository;
-
+@AllArgsConstructor
 @Service
 public class UsuarioService  {
 
-
-	@Autowired
 	private UsuarioRepository repository;
 
 	// Função para cadastrar um usuario

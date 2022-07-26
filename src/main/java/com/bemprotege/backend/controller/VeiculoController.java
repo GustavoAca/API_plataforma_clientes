@@ -2,6 +2,7 @@ package com.bemprotege.backend.controller;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bemprotege.backend.model.VeiculoModel;
 import com.bemprotege.backend.repository.VeiculoRepository;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/veiculos")
 @CrossOrigin("*")
 public class VeiculoController {
-		@Autowired
+
 		private VeiculoRepository repository;
 		
 		@GetMapping
