@@ -43,9 +43,13 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 				http.authorizeRequests()
 				.antMatchers("/usuarios/logar").permitAll()
 				.antMatchers("/usuarios/cadastrar")
-				.permitAll().anyRequest().authenticated()
+				.permitAll().and().authorizeRequests().antMatchers("/h2-console/**").permitAll()
+				.anyRequest().authenticated()
 				.and().httpBasic().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and().cors().and().csrf().disable();
+				.and()
+				.headers().frameOptions().disable().and()
+				.csrf().ignoringAntMatchers("/h2-console/**").and()
+				.cors().disable();
 	}
 }
