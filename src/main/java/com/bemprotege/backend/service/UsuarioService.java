@@ -1,8 +1,11 @@
 package com.bemprotege.backend.service;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+import com.bemprotege.backend.model.ClienteModel;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,6 +22,7 @@ public class UsuarioService  {
 
 	@Autowired
 	private UsuarioRepository repository;
+
 
 	// Função para cadastrar um usuario
 	public Optional<UsuarioModel> cadastraUsuario(UsuarioModel usuario) {
@@ -47,6 +51,15 @@ public class UsuarioService  {
 			return Optional.of(repository.save(usuario));
 		}
 		return Optional.empty();
+	}
+
+	public List<ClienteModel> trazerClientes(Long id){
+		Optional<UsuarioModel> usuario = repository.findById(id);
+		List<ClienteModel> lista = new ArrayList<>();
+			for (int i = 0; i< usuario.get().getCliente().size(); i++){
+				lista.add(usuario.get().getCliente().get(i));
+			}
+			return lista;
 	}
 
 	// função para encriptar, ela pega a senha do usuario

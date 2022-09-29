@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import com.bemprotege.backend.model.ClienteModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,12 +40,18 @@ public class UsuarioController {
 	public ResponseEntity<List<UsuarioModel>> getAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
+
+	@GetMapping("/{idUsuario}/clientes")
+	public ResponseEntity<List<ClienteModel>> getClientes(@PathVariable Long idUsuario){
+		return ResponseEntity.ok(usuarioService.trazerClientes(idUsuario));
+	}
 	
 	@PostMapping("/logar")
 	public ResponseEntity<UsuarioLogin> Autentication(@RequestBody Optional<UsuarioLogin> user){
 		return usuarioService.autenticaUsuario(user).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
+
 	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<UsuarioModel> postUsuario(@Valid @RequestBody UsuarioModel usuario) {
