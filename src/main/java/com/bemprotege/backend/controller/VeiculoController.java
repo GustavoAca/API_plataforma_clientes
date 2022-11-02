@@ -2,6 +2,8 @@ package com.bemprotege.backend.controller;
 
 import java.util.List;
 
+import com.bemprotege.backend.domain.veiculo.VeiculoDto;
+import com.bemprotege.backend.domain.veiculo.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bemprotege.backend.model.VeiculoModel;
-import com.bemprotege.backend.repository.VeiculoRepository;
+import com.bemprotege.backend.domain.veiculo.VeiculoModel;
+import com.bemprotege.backend.domain.veiculo.VeiculoRepository;
 
 @RestController
 @RequestMapping("/veiculos")
@@ -24,16 +26,19 @@ import com.bemprotege.backend.repository.VeiculoRepository;
 public class VeiculoController {
 		@Autowired
 		private VeiculoRepository repository;
+
+		@Autowired
+		private VeiculoService veiculoService;
 		
 		@GetMapping
 		public ResponseEntity<List<VeiculoModel>> getAll(){
-			return ResponseEntity.ok(repository.findAll());
+			return ResponseEntity.ok(veiculoService.buscarTodos());
 		}
 		
 		@GetMapping("/{id_veiculo}")
 		public ResponseEntity<VeiculoModel> getById(@PathVariable Long id_veiculo){
 			return repository.findById(id_veiculo)
-					.map(resp -> ResponseEntity.ok(resp))
+					.map(ResponseEntity::ok)
 					.orElse(ResponseEntity.notFound().build());
 		}
 		
@@ -43,13 +48,13 @@ public class VeiculoController {
 		}
 		
 		@PostMapping
-		public ResponseEntity<VeiculoModel> post(@RequestBody VeiculoModel veiculo){
-			return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(veiculo));
+		public ResponseEntity<VeiculoDto> post(@RequestBody VeiculoModel veiculo){
+			return ResponseEntity.status(HttpStatus.CREATED).body(veiculoService.salvar(veiculo));
 		}
 		
 		@PutMapping
 		public ResponseEntity<VeiculoModel> put (@RequestBody VeiculoModel veiculo){
-			return repository.findById(veiculo.getId_veiculo())
+			return repository.findById(veiculo.getId())
 					.map(resp -> ResponseEntity.ok().body(repository.save(veiculo)))
 					.orElse(ResponseEntity.notFound().build());
 		}

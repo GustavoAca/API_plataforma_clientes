@@ -1,6 +1,6 @@
-package com.bemprotege.backend.repository;
+package com.bemprotege.backend.domain.imagem;
 
-import com.bemprotege.backend.model.ImagensModel;
+import com.bemprotege.backend.domain.imagem.ImagensModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +9,4 @@ import java.util.Optional;
 @Repository
 public interface ImagensRepository extends JpaRepository<ImagensModel,Long> {
 
-    Optional<ImagensModel> findByIdImagem(Long idImagem);
 }

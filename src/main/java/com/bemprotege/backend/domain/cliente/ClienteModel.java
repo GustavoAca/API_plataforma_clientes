@@ -1,43 +1,38 @@
-package com.bemprotege.backend.model;
+package com.bemprotege.backend.domain.cliente;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+import com.bemprotege.backend.domain.usuario.UsuarioModel;
+import com.bemprotege.backend.domain.veiculo.VeiculoModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name="corretores")
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name="cliente")
 public class ClienteModel {
-	
-	//Atributos
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_cliente;
+	private Long id;
 	
 	private String nome;
 	
 	private String contato;
 
-	
-	//RELACIONAMENTO DE TABELAS
-	
 	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("cliente")
 	private List<VeiculoModel> veiculo;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("cliente")
 	private UsuarioModel usuario;

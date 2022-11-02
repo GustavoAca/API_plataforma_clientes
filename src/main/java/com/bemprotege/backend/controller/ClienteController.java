@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bemprotege.backend.model.ClienteModel;
-import com.bemprotege.backend.repository.ClienteRepository;
+import com.bemprotege.backend.domain.cliente.ClienteModel;
+import com.bemprotege.backend.domain.cliente.ClienteRepository;
 
 @RestController
 @RequestMapping("/clientes")
@@ -49,7 +49,7 @@ public class ClienteController {
 		
 		@PutMapping
 		public ResponseEntity<ClienteModel> put (@RequestBody ClienteModel cliente){
-			return repository.findById(cliente.getId_cliente())
+			return repository.findById(cliente.getId())
 					.map(resp -> ResponseEntity.ok().body(repository.save(cliente)))
 					.orElse(ResponseEntity.notFound().build());
 		}

@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.bemprotege.backend.model.UsuarioModel;
+import com.bemprotege.backend.domain.usuario.UsuarioModel;
 
 public class UserDetailsImpl implements UserDetails {
 

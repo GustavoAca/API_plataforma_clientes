@@ -1,20 +1,20 @@
-package com.bemprotege.backend.service;
+package com.bemprotege.backend.domain.usuario;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.bemprotege.backend.model.ClienteModel;
+import com.bemprotege.backend.domain.cliente.ClienteModel;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.springframework.stereotype.Service;
 
-import com.bemprotege.backend.model.UsuarioLogin;
-import com.bemprotege.backend.model.UsuarioModel;
-import com.bemprotege.backend.repository.UsuarioRepository;
+import com.bemprotege.backend.domain.usuario.UsuarioLogin;
+import com.bemprotege.backend.domain.usuario.UsuarioModel;
+import com.bemprotege.backend.domain.usuario.UsuarioRepository;
 
 @Service
 public class UsuarioService  {

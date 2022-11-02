@@ -19,13 +19,6 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-		/**
-		 * O objeto auth registra e cria uma nova instância do objeto userDetailsService
-		 * da interface UserDetailsService implementada na Classe UserDetailsServiceImpl
-		 * para recuperar os dados dos usuários gravados no Banco de dados.
-		 */
-
 		auth.userDetailsService(userDetailsService);
 
 		auth.inMemoryAuthentication().withUser("root").password(passwordEncoder().encode("root"))

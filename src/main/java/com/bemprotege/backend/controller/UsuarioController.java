@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.bemprotege.backend.model.ClienteModel;
+import com.bemprotege.backend.domain.cliente.ClienteModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bemprotege.backend.model.UsuarioLogin;
-import com.bemprotege.backend.model.UsuarioModel;
-import com.bemprotege.backend.repository.UsuarioRepository;
-import com.bemprotege.backend.service.UsuarioService;
+import com.bemprotege.backend.domain.usuario.UsuarioLogin;
+import com.bemprotege.backend.domain.usuario.UsuarioModel;
+import com.bemprotege.backend.domain.usuario.UsuarioRepository;
+import com.bemprotege.backend.domain.usuario.UsuarioService;
 
 
 @RestController
@@ -48,7 +48,7 @@ public class UsuarioController {
 	
 	@PostMapping("/logar")
 	public ResponseEntity<UsuarioLogin> Autentication(@RequestBody Optional<UsuarioLogin> user){
-		return usuarioService.autenticaUsuario(user).map(resp -> ResponseEntity.ok(resp))
+		return usuarioService.autenticaUsuario(user).map(ResponseEntity::ok)
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 
