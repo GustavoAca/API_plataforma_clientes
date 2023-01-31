@@ -16,7 +16,7 @@ public class VeiculoModel {
     // atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_veiculo;
+    private Long id;
 
     private String nome;
 
@@ -28,8 +28,6 @@ public class VeiculoModel {
 
     private float mensalidade;
 
-    private String linkContrato;
-
     private String observacao;
 
     private boolean inadiplente;
@@ -40,12 +38,11 @@ public class VeiculoModel {
     @JsonIgnoreProperties("veiculo")
     private TiposVeiculosModel tiposVeiculos;
 
-//    @OneToMany(mappedBy="veiculo", cascade = CascadeType.ALL)
-//    @JsonIgnoreProperties("veiculo")
-//    private List<ClienteModel> cliente;
 
     @ManyToOne
     @JsonIgnoreProperties("veiculo")
     private ClienteModel cliente;
+
+    private Long idImagem;
 
 }

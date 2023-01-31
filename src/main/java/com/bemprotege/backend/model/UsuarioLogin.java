@@ -20,7 +20,6 @@ public class UsuarioLogin {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 
-		
 		@NotNull
 		@Size(min=2, max=100)
 		private String nome;

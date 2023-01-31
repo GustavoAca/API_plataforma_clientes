@@ -51,7 +51,7 @@ public class VeiculoController {
 		
 		@PutMapping
 		public ResponseEntity<VeiculoModel> put (@RequestBody VeiculoModel veiculo){
-			return repository.findById(veiculo.getId_veiculo())
+			return repository.findById(veiculo.getId())
 					.map(resp -> ResponseEntity.ok().body(repository.save(veiculo)))
 					.orElse(ResponseEntity.notFound().build());
 		}

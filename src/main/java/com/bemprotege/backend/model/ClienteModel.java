@@ -18,7 +18,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="corretores")
+@Table(name="clientes")
 public class ClienteModel {
 	
 	//Atributos
