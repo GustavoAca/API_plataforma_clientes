@@ -43,6 +43,8 @@ public class VeiculoModel {
     @JsonIgnoreProperties("veiculo")
     private ClienteModel cliente;
 
-    private Long idImagem;
+    @ManyToOne
+    @JsonIgnoreProperties("veiculo")
+    private ImagensModel imagens;
 
 }

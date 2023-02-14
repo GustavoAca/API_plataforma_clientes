@@ -20,7 +20,9 @@ public class ImagensModel {
     private Long id;
 
     private String urlImagem;
-    private Long idVeiculo;
 
+    @ManyToOne
+    @JsonIgnoreProperties("imagens")
+    private VeiculoModel veiculo;
 
 }
