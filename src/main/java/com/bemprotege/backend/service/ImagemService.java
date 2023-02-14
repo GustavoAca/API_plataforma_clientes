@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class ImagemService{
+public class ImagemService {
 
     private final ImagemRepository imagemRepository;
     private final VeiculoRepository veiculoRepository;
@@ -35,7 +35,7 @@ public class ImagemService{
     }
 
 
-    public ResponseEntity<String> salvar(MultipartFile file, Long veiculoId){
+    public ResponseEntity<String> salvar(MultipartFile file, Long veiculoId) {
         ImagensModel imagem = new ImagensModel();
         log.info("Recebendo o arquivo: " + file.getOriginalFilename());
         var caminho = pathArquivos + UUID.randomUUID() + "." + extrairExtensao(
@@ -46,7 +46,7 @@ public class ImagemService{
 
         try {
             salvarImagem(imagem, veiculo, caminho);
-            salvarVeiculo(veiculo,imagem);
+            salvarVeiculo(veiculo, imagem);
             Files.copy(file.getInputStream(), Path.of(caminho), StandardCopyOption.REPLACE_EXISTING);
             veiculoRepository.save(veiculo);
             return new ResponseEntity<>("{ \"mensagem\": \"Arquivo carregado com sucesso!\"}", HttpStatus.OK);
@@ -58,16 +58,17 @@ public class ImagemService{
 
     }
 
-    private void salvarImagem(ImagensModel imagem, VeiculoModel veiculo, String caminho){
+    private void salvarImagem(ImagensModel imagem, VeiculoModel veiculo, String caminho) {
         imagem.setVeiculo(veiculo);
         imagem.setUrlImagem(caminho);
         imagemRepository.save(imagem);
     }
 
-    private VeiculoModel getVeiculo(Long id){
+    private VeiculoModel getVeiculo(Long id) {
         return veiculoRepository.findById(id).orElseThrow();
     }
-    private void salvarVeiculo(VeiculoModel veiculo, ImagensModel imagem){
+
+    private void salvarVeiculo(VeiculoModel veiculo, ImagensModel imagem) {
         veiculo.setImagens(imagem);
         veiculoRepository.save(veiculo);
     }
