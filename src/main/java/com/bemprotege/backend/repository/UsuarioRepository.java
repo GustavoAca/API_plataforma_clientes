@@ -9,5 +9,5 @@ import com.bemprotege.backend.model.UsuarioModel;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long> {
-	public Optional<UsuarioModel> findByUsuario(String usuario);
+	Optional<UsuarioModel> findByUsuario(String usuario);
 }

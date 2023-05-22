@@ -9,5 +9,5 @@ import com.bemprotege.backend.model.VeiculoModel;
 
 @Repository
 public interface VeiculoRepository extends JpaRepository<VeiculoModel, Long> {
-	public List<VeiculoModel> findAllByNomeContainingIgnoreCase(String nome);
+	List<VeiculoModel> findAllByNomeContainingIgnoreCase(String nome);
 }

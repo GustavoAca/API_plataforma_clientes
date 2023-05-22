@@ -19,7 +19,7 @@ public class VeiculoModel {
 	// atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_veiculo;
+	private Long id;
 
 	private String nome;
 

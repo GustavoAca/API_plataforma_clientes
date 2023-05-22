@@ -2,6 +2,7 @@ package com.bemprotege.backend.controller;
 
 import com.bemprotege.backend.service.ImagensService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/imagens")
 @CrossOrigin("*")
-public class ImangemController {
+public class ImagemController {
 
     private final ImagensService imagensService;
     @PostMapping
@@ -17,6 +18,7 @@ public class ImangemController {
         imagensService.salvarFoto(foto);
 
     }
+
     @DeleteMapping("/{id_cliente}")
     public void delete(@PathVariable Long id_cliente) {
         imagensService.deletar(id_cliente);

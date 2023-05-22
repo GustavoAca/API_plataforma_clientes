@@ -4,9 +4,11 @@ import com.bemprotege.backend.model.ImagensModel;
 import com.bemprotege.backend.model.UsuarioModel;
 import com.bemprotege.backend.repository.ImagensRepository;
 import lombok.AllArgsConstructor;
+import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 @Service

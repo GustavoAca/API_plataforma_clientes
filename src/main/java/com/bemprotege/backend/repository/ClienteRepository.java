@@ -9,5 +9,5 @@ import com.bemprotege.backend.model.ClienteModel;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<ClienteModel, Long> {
-	public List<ClienteModel> findAllByNomeContainingIgnoreCase(String nome);
+	List<ClienteModel> findAllByNomeContainingIgnoreCase(String nome);
 }
