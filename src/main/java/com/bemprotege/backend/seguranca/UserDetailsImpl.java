@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.bemprotege.backend.model.UsuarioModel;
+import com.bemprotege.backend.model.Usuario;
 
 public class UserDetailsImpl implements UserDetails {
 
@@ -17,14 +17,12 @@ public class UserDetailsImpl implements UserDetails {
 	
 	private List<GrantedAuthority> authorities;
 	
-	public UserDetailsImpl(UsuarioModel usuario ) {
+	public UserDetailsImpl(Usuario usuario ) {
 		this.userName = usuario.getUsuario();
 		this.password = usuario.getSenha();
 	}
 	
 	public UserDetailsImpl() {}
-	
-	
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

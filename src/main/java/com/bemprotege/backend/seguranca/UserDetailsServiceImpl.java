@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.bemprotege.backend.model.UsuarioModel;
+import com.bemprotege.backend.model.Usuario;
 import com.bemprotege.backend.repository.UsuarioRepository;
 
 @Service
@@ -19,9 +19,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		Optional<UsuarioModel> user  = usuarioRepository.findByUsuario(userName);
+		Optional<Usuario> user  = usuarioRepository.findByUsuario(userName);
 		user.orElseThrow(() -> new UsernameNotFoundException(userName + " not found. "));
-		
 		
 		return user.map(UserDetailsImpl::new).get();
 	}

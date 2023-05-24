@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bemprotege.backend.model.VeiculoModel;
+import com.bemprotege.backend.model.Veiculo;
 
 @RestController
 @RequestMapping("/veiculos")
@@ -30,27 +30,27 @@ public class VeiculoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<VeiculoModel>> getAll(){
+	public ResponseEntity<List<Veiculo>> getAll(){
 		return veiculoService.getAll();
 	}
 
 	@GetMapping("/{id_veiculo}")
-	public ResponseEntity<VeiculoModel> getById(@PathVariable Long id){
+	public ResponseEntity<Veiculo> getById(@PathVariable Long id){
 		return veiculoService.getById(id);
 	}
 
 	@GetMapping("/titulo/{nome}")
-	public ResponseEntity<List<VeiculoModel>> GetByTitulo(@PathVariable String nome){
+	public ResponseEntity<List<Veiculo>> GetByTitulo(@PathVariable String nome){
 		return veiculoService.getByTitulo(nome);
 	}
 
 	@PostMapping
-	public ResponseEntity<VeiculoModel> post(@RequestBody VeiculoModel veiculo){
+	public ResponseEntity<Veiculo> post(@RequestBody Veiculo veiculo){
 		return veiculoService.salvar(veiculo);
 	}
 
 	@PutMapping
-	public ResponseEntity<VeiculoModel> put (@RequestBody VeiculoModel veiculo){
+	public ResponseEntity<Veiculo> put (@RequestBody Veiculo veiculo){
 		return veiculoService.alterar(veiculo);
 	}
 

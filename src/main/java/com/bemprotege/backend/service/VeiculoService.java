@@ -1,6 +1,6 @@
 package com.bemprotege.backend.service;
 
-import com.bemprotege.backend.model.VeiculoModel;
+import com.bemprotege.backend.model.Veiculo;
 import com.bemprotege.backend.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,23 +19,23 @@ public class VeiculoService {
         this.repository = repository;
     }
 
-    public ResponseEntity<List<VeiculoModel>> getAll(){
+    public ResponseEntity<List<Veiculo>> getAll(){
         return ResponseEntity.ok(repository.findAll());
     }
 
-    public ResponseEntity<VeiculoModel> getById(Long id){
+    public ResponseEntity<Veiculo> getById(Long id){
         return repository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<List<VeiculoModel>> getByTitulo(String nome){
+    public ResponseEntity<List<Veiculo>> getByTitulo(String nome){
         return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
     }
 
-    public ResponseEntity<VeiculoModel> salvar(VeiculoModel veiculoModel){
+    public ResponseEntity<Veiculo> salvar(Veiculo veiculoModel){
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(veiculoModel));
     }
 
-    public ResponseEntity<VeiculoModel> alterar(VeiculoModel veiculoModel){
+    public ResponseEntity<Veiculo> alterar(Veiculo veiculoModel){
         return repository.findById(veiculoModel.getId())
                 .map(resp -> ResponseEntity.ok().body(repository.save(veiculoModel)))
                 .orElse(ResponseEntity.notFound().build());

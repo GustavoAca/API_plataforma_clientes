@@ -14,24 +14,24 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
 
 
 @Getter
 @Setter
 @Entity
 @Table(name = "usuarios")
-public class UsuarioModel {
-	
-	//ATRIBUTOS
+@AllArgsConstructor
+@NoArgsConstructor
+public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	
 	@NotNull
 	@Size(min=2, max=100)
 	private String nome;
@@ -48,9 +48,7 @@ public class UsuarioModel {
 	
 	//RELAÇÃO ENTRE TABELAS
 	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
-	private List<ClienteModel> cliente;
-
-
+	private List<Cliente> cliente;
 }
