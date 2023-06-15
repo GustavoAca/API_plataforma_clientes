@@ -44,11 +44,6 @@ public class UsuarioController {
 	public List<Usuario> getAll(){
 		return (repository.findAll());
 	}
-
-	@GetMapping("/{id}/clientes")
-	public ResponseEntity<List<Cliente>> getClientes(@PathVariable Long id){
-		return ResponseEntity.ok(clienteRepository.findClientesDeUsuario(id));
-	}
 	
 	@PostMapping("/logar")
 	public ResponseEntity<Optional<UsuarioLogin>> Autentication(@RequestBody Optional<UsuarioLogin> user){

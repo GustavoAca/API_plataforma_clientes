@@ -12,7 +12,7 @@ import java.util.List;
 @SuperBuilder
 @Getter
 @Setter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor()
 @NoArgsConstructor
 public class ClienteDto {
 

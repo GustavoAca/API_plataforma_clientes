@@ -13,6 +13,6 @@ import com.bemprotege.backend.model.Cliente;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	List<Cliente> findAllByNomeContainingIgnoreCase(String nome);
 
-	@Query("select nome from Cliente c where c.usuario_id = ?1")
-	List<Cliente> findClientesDeUsuario(Long id);
+
+
 }

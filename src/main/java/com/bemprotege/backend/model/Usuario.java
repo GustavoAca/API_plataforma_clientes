@@ -1,14 +1,9 @@
 package com.bemprotege.backend.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 
 @Getter
@@ -26,6 +22,7 @@ import lombok.Setter;
 @Table(name = "usuarios")
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 public class Usuario {
 	
 	@Id
@@ -45,10 +42,8 @@ public class Usuario {
 	private String senha;
 
 	private String foto;
-	
-	//RELAÇÃO ENTRE TABELAS
-	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
-	private List<Cliente> cliente;
+	private List<Cliente> cliente = new ArrayList<>();
 }

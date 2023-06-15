@@ -7,8 +7,8 @@ services:
     image: postgres:14-alpine
     container_name: dev-postgresql
     environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgress
+      POSTGRES_DB: bemprotege
+      POSTGRES_USER: bemprotege
       POSTGRES_PASSWORD: 1234567
     ports:
       - "5433:5432"
@@ -16,13 +16,6 @@ services:
       - ./.data/postgresql/data:/var/lib/postgresql/data
     networks:
       - dev-network
-  flyway:
-    image: flyway/flyway:6.4.1-alpine
-    environment:
-      - FLYWAY_EDITION:community
-    command: -url=jdbc:postgresql://pg-docker:5432/postgres -schemas=postgres -user=postgres -password=1234567 -connectRetries=10 migrate
-    volumes:
-      - ./migracoes:/flyway/sql/
 
 # ======================================================================================================================
 # REDE

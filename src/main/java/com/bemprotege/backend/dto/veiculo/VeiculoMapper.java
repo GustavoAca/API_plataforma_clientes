@@ -16,7 +16,7 @@ public class VeiculoMapper {
                 .cliente(entity.getCliente()).build();
     }
 
-    public Veiculo toDto(VeiculoDto dto){
+    public Veiculo toEntity(VeiculoDto dto){
         return Veiculo.builder().id(dto.getId())
                 .nome(dto.getNome())
                 .placa(dto.getPlaca())

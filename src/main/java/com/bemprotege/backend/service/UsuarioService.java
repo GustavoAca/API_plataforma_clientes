@@ -1,15 +1,13 @@
 package com.bemprotege.backend.service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
-import com.bemprotege.backend.model.Cliente;
+import com.bemprotege.backend.exception.NaoEncontradoException;
 import com.bemprotege.backend.model.UsuarioLogin;
 import com.bemprotege.backend.service.criptografia.Criptografia;
 import com.bemprotege.backend.service.criptografia.CriptografiaImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -53,5 +51,9 @@ public class UsuarioService  {
 	public ResponseEntity<Optional<UsuarioLogin>> autenticar(Optional<UsuarioLogin> usuarioLogin){
 		Optional<Usuario> usuarioEncontrado = repository.findByUsuario(usuarioLogin.get().getUsuario());
 		return ResponseEntity.ok(new CriptografiaImpl(usuarioEncontrado,usuarioLogin).autenticaUsuario());
+	}
+
+	public Usuario trazerPorId(Long id) throws NaoEncontradoException {
+		return repository.findById(id).orElseThrow(() -> new NaoEncontradoException("Usuario não encontrado"));
 	}
 }
