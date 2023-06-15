@@ -12,34 +12,31 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @Entity
-@Table(name="corretores")
-public class ClienteModel {
-	
-	//Atributos
+@Table(name="clientes")
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_cliente;
+	private Long id;
 	
 	private String nome;
 	
 	private String contato;
-
-	
-	//RELACIONAMENTO DE TABELAS
 	
 	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("cliente")
-	private List<VeiculoModel> veiculo;
+	private List<Veiculo> veiculo;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("cliente")
-	private UsuarioModel usuario;
-
+	private Usuario usuario;
 }
