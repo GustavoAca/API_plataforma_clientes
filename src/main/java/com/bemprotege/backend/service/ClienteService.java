@@ -23,10 +23,9 @@ public class ClienteService {
         this.clienteMapper = clienteMapper;
     }
 
-    public ResponseEntity<ClienteDto> buscarPorId(Long id){
+    public ClienteDto buscarPorId(Long id) throws NaoEncontradoException {
         return clienteRepository.findById(id).map(clienteMapper::toDto)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new NaoEncontradoException("Cliente não encontrado"));
     }
 
     public ResponseEntity<List<ClienteDto>> encontrarPorNome(String nome){

@@ -2,6 +2,7 @@ package com.bemprotege.backend.controller;
 
 import java.util.List;
 
+import com.bemprotege.backend.dto.veiculo.VeiculoDto;
 import com.bemprotege.backend.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,32 +31,37 @@ public class VeiculoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Veiculo>> getAll(){
+	public ResponseEntity<List<VeiculoDto>> getAll(){
 		return veiculoService.getAll();
 	}
 
 	@GetMapping("/{id_veiculo}")
-	public ResponseEntity<Veiculo> getById(@PathVariable Long id){
+	public ResponseEntity<VeiculoDto> getById(@PathVariable Long id){
 		return veiculoService.getById(id);
 	}
 
 	@GetMapping("/titulo/{nome}")
-	public ResponseEntity<List<Veiculo>> GetByTitulo(@PathVariable String nome){
+	public ResponseEntity<List<VeiculoDto>> GetByTitulo(@PathVariable String nome){
 		return veiculoService.getByTitulo(nome);
 	}
 
 	@PostMapping
-	public ResponseEntity<Veiculo> post(@RequestBody Veiculo veiculo){
+	public ResponseEntity<VeiculoDto> post(@RequestBody Veiculo veiculo){
 		return veiculoService.salvar(veiculo);
 	}
 
 	@PutMapping
-	public ResponseEntity<Veiculo> put (@RequestBody Veiculo veiculo){
+	public ResponseEntity<VeiculoDto> put (@RequestBody Veiculo veiculo){
 		return veiculoService.alterar(veiculo);
 	}
 
 	@DeleteMapping("/{id_veiculo}")
 	public void delete(@PathVariable Long id) {
 		veiculoService.deletar(id);
+	}
+
+	@GetMapping("/vencimento/{dataVencimento}")
+	public ResponseEntity<List<VeiculoDto>> getVeiculosPorVencimento(@PathVariable String dataVencimento){
+		return veiculoService.getVeiculosPorVencimento(dataVencimento);
 	}
 }

@@ -43,7 +43,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteDto> buscaPorId(@PathVariable Long id) {
+    public ClienteDto buscaPorId(@PathVariable Long id) throws NaoEncontradoException {
         return clienteService.buscarPorId(id);
     }
 
