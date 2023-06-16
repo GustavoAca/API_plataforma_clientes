@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class VeiculoMapperTest {
 
-    private VeiculoMapper veiculoMapper = new VeiculoMapper();
+    private VeiculoMapper veiculoMapper = new VeiculoMapper(clienteService);
 
     @Nested
     class Dado_um_veiculo {

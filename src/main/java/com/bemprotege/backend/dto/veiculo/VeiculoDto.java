@@ -29,5 +29,5 @@ public class VeiculoDto {
 
     private TiposVeiculos tiposVeiculos;
 
-    private Cliente cliente;
+    private Long cliente;
 }
