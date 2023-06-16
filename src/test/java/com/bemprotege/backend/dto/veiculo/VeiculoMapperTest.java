@@ -1,16 +1,23 @@
 package com.bemprotege.backend.dto.veiculo;
 
+import com.bemprotege.backend.dto.cliente.ClienteMapper;
+import com.bemprotege.backend.exception.NaoEncontradoException;
 import com.bemprotege.backend.model.Cliente;
 import com.bemprotege.backend.model.Veiculo;
 import com.bemprotege.backend.model.veiculo.TiposVeiculos;
+import com.bemprotege.backend.repository.ClienteRepository;
+import com.bemprotege.backend.service.ClienteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class VeiculoMapperTest {
 
+
+    private ClienteService clienteService;
     private VeiculoMapper veiculoMapper = new VeiculoMapper(clienteService);
 
     @Nested
@@ -59,7 +66,7 @@ class VeiculoMapperTest {
                     .nome("Celta")
                     .placa("ABC-1234")
                     .uber(false)
-                    .cliente(cliente)
+                    .cliente(1L)
                     .tiposVeiculos(TiposVeiculos.CAMINHAO)
                     .mensalidade(102.2F)
                     .build();
@@ -70,7 +77,7 @@ class VeiculoMapperTest {
         class Quando_passar_por_mapper {
             Veiculo entity;
             @BeforeEach
-            void setup() {
+            void setup() throws NaoEncontradoException {
                 entity = veiculoMapper.toEntity(dto);
             }
 
