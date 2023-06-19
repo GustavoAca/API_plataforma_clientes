@@ -7,19 +7,10 @@ services:
     image: postgres:14-alpine
     container_name: dev-postgresql
     environment:
-      POSTGRES_DB: bemprotege
-      POSTGRES_USER: bemprotege
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234567
     ports:
       - "5433:5432"
     volumes:
-      - ./.data/postgresql/data:/var/lib/postgresql/data
-    networks:
-      - dev-network
-
-# ======================================================================================================================
-# REDE
-# ======================================================================================================================
-networks:
-  dev-network:
-    driver: bridge
+      - ./.data/postgresql/data:/var/lib/postgresql/data1
