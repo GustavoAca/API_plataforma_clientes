@@ -1,6 +1,3 @@
-# Imagem base do Java 17
-FROM adoptopenjdk:17-jdk-hotspot
-
 # Diretório de trabalho
 WORKDIR /app
 
@@ -8,7 +5,7 @@ WORKDIR /app
 COPY target/backend-1.1.0.jar app.jar
 
 # Variáveis de ambiente do Flyway (altere de acordo com suas configurações)
-ENV FLYWAY_URL=postgresql://postgres:CxJi5RbllxhGkYXj9aFd@containers-us-west-210.railway.app:7338/railway
+ENV FLYWAY_URL=jdbc:postgresql://postgres:CxJi5RbllxhGkYXj9aFd@containers-us-west-210.railway.app:7338/railway
 ENV FLYWAY_USER=containers-us-west-210.railway.app
 ENV FLYWAY_PASSWORD=CxJi5RbllxhGkYXj9aFd
 
